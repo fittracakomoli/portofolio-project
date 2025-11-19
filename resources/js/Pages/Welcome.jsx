@@ -664,7 +664,7 @@ export default function Welcome() {
                                                         <button
                                                             type="button"
                                                             disabled
-                                                            className="border hidden text-center border-white inline-flex justify-center items-center px-4 py-2 bg-white/6 text-white rounded-full w-full font-semibold opacity-40 cursor-not-allowed"
+                                                            className="border hidden text-center border-white justify-center items-center px-4 py-2 bg-white/6 text-white rounded-full w-full font-semibold opacity-40 cursor-not-allowed"
                                                         >
                                                             View Repository
                                                         </button>
@@ -684,7 +684,7 @@ export default function Welcome() {
                                                         <button
                                                             type="button"
                                                             disabled
-                                                            className="w-full hidden text-center inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold opacity-40 cursor-not-allowed"
+                                                            className="w-full hidden text-center justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold opacity-40 cursor-not-allowed"
                                                         >
                                                             Visit Site
                                                         </button>

@@ -1,17 +1,28 @@
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
+import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
+import Aurora from "@/Components/Aurora";
 
 export default function GuestLayout({ children }) {
     return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-                </Link>
+        <div className="relative">
+            {/* background layer — absolute (bukan fixed) => akan ikut bergeser saat scroll */}
+            <div className="absolute inset-0 -z-30 pointer-events-none">
+                {/* Aurora di bagian atas halaman */}
+                <div className="absolute inset-x-0 top-0 h-96 overflow-hidden">
+                    <Aurora
+                        blend={0.5}
+                        amplitude={1.0}
+                        speed={1}
+                        className="h-full"
+                    />
+                </div>
             </div>
 
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
-                {children}
+            {/* konten utama dengan z-10 agar selalu di atas background */}
+            <div className="relative z-10">
+                <Navbar />
+                <main>{children}</main>
+                <Footer />
             </div>
         </div>
     );

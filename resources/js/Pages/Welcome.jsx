@@ -1,361 +1,831 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link } from "@inertiajs/react";
+import GuestLayout from "@/Layouts/GuestLayout";
+import TextType from "@/Components/TextType";
+import SpotlightCard from "@/Components/SpotlightCard";
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
-    const handleImageError = () => {
-        document
-            .getElementById('screenshot-container')
-            ?.classList.add('!hidden');
-        document.getElementById('docs-card')?.classList.add('!row-span-1');
-        document
-            .getElementById('docs-card-content')
-            ?.classList.add('!flex-row');
-        document.getElementById('background')?.classList.add('!hidden');
-    };
+export default function Welcome() {
+    const tools = [
+        {
+            label: "PHP",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/2560px-PHP-logo.svg.png",
+        },
+        {
+            label: "Laravel",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1154px-Laravel.svg.png",
+        },
+        {
+            label: "JavaScript",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png",
+        },
+        {
+            label: "React",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
+        },
+        {
+            label: "Tailwind",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2560px-Tailwind_CSS_Logo.svg.png",
+        },
+        {
+            label: "Bootstrap",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png",
+        },
+        {
+            label: "MySQL",
+            path: "https://upload.wikimedia.org/wikipedia/id/a/a9/MySQL.png",
+        },
+        {
+            label: "HTML",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png",
+        },
+        {
+            label: "CSS",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/851px-CSS3_logo_and_wordmark.svg.png",
+        },
+        {
+            label: "Node JS",
+            path: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/233_Node_Js_logo-512.png",
+        },
+        {
+            label: "GIT",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/1200px-Git_icon.svg.png",
+        },
+        {
+            label: "Python",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png",
+        },
+        {
+            label: "Java",
+            path: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/181_Java_logo_logos-512.png",
+        },
+        {
+            label: "C++",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/911px-ISO_C%2B%2B_Logo.svg.png",
+        },
+        {
+            label: "Go Lang",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/512px-Go_Logo_Blue.svg.png",
+        },
+        {
+            label: "Figma",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png",
+        },
+        {
+            label: "After Effects",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/2101px-Adobe_After_Effects_CC_icon.svg.png",
+        },
+        {
+            label: "Premiere Pro",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/2101px-Adobe_Premiere_Pro_CC_icon.svg.png",
+        },
+        {
+            label: "Photoshop",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/500px-Adobe_Photoshop_CC_icon.svg.png",
+        },
+        {
+            label: "Illustrator",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/512px-Adobe_Illustrator_CC_icon.svg.png?20251029195730",
+        },
+        {
+            label: "OBS Studio",
+            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/OBS_Studio_Logo.svg/1024px-OBS_Studio_Logo.svg.png",
+        },
+        {
+            label: "vMix",
+            path: "https://images.seeklogo.com/logo-png/43/2/vmix-logo-png_seeklogo-433108.png",
+        },
+        { label: "React", path: "#" },
+        { label: "React", path: "#" },
+        { label: "React", path: "#" },
+        { label: "React", path: "#" },
+        { label: "React", path: "#" },
+    ];
+
+    const academicJourney = [
+        {
+            year: "2020",
+            endyear: "2023",
+            title: "SMK negeri 2 Pati",
+            desc: "Multimedia Department",
+        },
+        {
+            year: "2023",
+            endyear: "Present",
+            title: "Universitas Negeri Semarang",
+            desc: "Informatics Engineering Department",
+        },
+    ];
+
+    const orgJourney = [
+        {
+            year: "2024",
+            endyear: "2025",
+            title: "Hima Ilmu Komputer UNNES",
+            desc: "Staff of Communication and Information Division",
+        },
+        {
+            year: "2025",
+            endyear: "Present",
+            title: "Hima Ilmu Komputer UNNES",
+            desc: "Vice Head of Communication and Information Division",
+        },
+    ];
+
+    const certification = [
+        {
+            year: "2023",
+            endyear: "2025",
+            title: "BNSP",
+            desc: "KKNI Multimedia Level 2 Certification",
+        },
+        {
+            year: "2024",
+            endyear: "Present",
+            title: "Dicoding Academy",
+            desc: "Javascript Programming Certification",
+        },
+        {
+            year: "2025",
+            endyear: "Present",
+            title: "Huawei",
+            desc: "AI Basic: Overview of Artificial Intelligence Certification",
+        },
+    ];
+
+    const projects = [
+        {
+            title: "Hima Ilkom Official Website",
+            link: "https://himailkomunnes.com",
+            image: "/img/himailkom.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Laravel", "React"],
+        },
+        {
+            title: "Attendance Website",
+            link: "https://presensi.himailkomunnes.com",
+            image: "/img/presensi.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Laravel", "React"],
+        },
+        {
+            title: "Ticket-Ink",
+            link: "#",
+            image: "/img/ticketink.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Laravel", "Blade"],
+        },
+        {
+            title: "Kentucky Catering",
+            link: "#",
+            image: "/img/catering.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["HTML", "CSS", "JavaScript"],
+        },
+        {
+            title: "Eternal Commerce",
+            link: "#",
+            image: "/img/eternal.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["HTML", "CSS", "JavaScript"],
+        },
+        {
+            title: "Wedding Invitation",
+            link: "#",
+            image: "/img/wedding.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["HTML", "CSS"],
+        },
+        {
+            title: "Restorasi Citra",
+            link: "#",
+            image: "/img/restorasi.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Python", "Flask", "MatLab"],
+        },
+        {
+            title: "Laptop Recommendation",
+            link: "#",
+            image: "/img/laptop.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Python", "Flask", "Random Forest"],
+        },
+        {
+            title: "SIRINA",
+            link: "#",
+            image: "/img/sirina.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Figma"],
+        },
+        {
+            title: "KarirNess",
+            link: "#",
+            image: "/img/karirness.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Figma"],
+        },
+        {
+            title: "Disaster Alert",
+            link: "#",
+            image: "/img/disaster.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Figma"],
+        },
+        {
+            title: "LogiLink",
+            link: "#",
+            image: "/img/logilink.png",
+            description:
+                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
+            techStack: ["Figma"],
+        },
+    ];
+
+    const socials = [
+        {
+            name: "Explore",
+            desc: "GitHub",
+            subDesc: "Repositories & Projects",
+            url: "https://github.com/fittracakomoli",
+            colorClass: "gray-500",
+            icon: (
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                    aria-hidden
+                >
+                    <path d="M12 .5C5.73.5.75 5.48.75 11.74c0 4.93 3.19 9.11 7.61 10.59.56.1.77-.24.77-.54 0-.27-.01-1-.02-1.96-3.09.67-3.74-1.49-3.74-1.49-.5-1.28-1.22-1.62-1.22-1.62-.99-.68.07-.67.07-.67 1.1.08 1.68 1.13 1.68 1.13.97 1.66 2.55 1.18 3.17.9.1-.7.38-1.18.69-1.45-2.47-.28-5.07-1.24-5.07-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.11 1.15a10.8 10.8 0 0 1 2.83-.38c.96.01 1.93.13 2.83.38 2.15-1.45 3.1-1.15 3.1-1.15.62 1.54.24 2.68.12 2.96.72.78 1.16 1.78 1.16 3 0 4.29-2.61 5.24-5.09 5.51.39.34.73 1.03.73 2.08 0 1.5-.01 2.71-.01 3.08 0 .3.2.65.78.54A11.26 11.26 0 0 0 23.25 11.75C23.25 5.48 18.27.5 12 .5z" />
+                </svg>
+            ),
+        },
+        {
+            name: "Connect",
+            desc: "LinkedIn",
+            subDesc: "Professional Profile",
+            url: "https://www.linkedin.com/in/fittra-marga-ardana",
+            colorClass: "blue-500",
+            icon: (
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                    aria-hidden
+                >
+                    <path d="M4.98 3.5A2.5 2.5 0 1 1 4.98 8.5 2.5 2.5 0 0 1 4.98 3.5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-.9 1.7-1.8 3.5-1.8 3.7 0 4.4 2.4 4.4 5.5V21H17V15.7c0-1.3 0-3-1.8-3-1.8 0-2.1 1.4-2.1 2.9V21H9z" />
+                </svg>
+            ),
+        },
+        {
+            name: "Stalk",
+            desc: "Instagram",
+            subDesc: "Photo & Video Sharing",
+            url: "https://instagram.com/fittracakomoli",
+            colorClass: "pink-500 ",
+            icon: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                    aria-hidden
+                >
+                    <path d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                </svg>
+            ),
+        },
+        {
+            name: "Watch",
+            desc: "YouTube",
+            subDesc: "Video Content",
+            url: "https://www.youtube.com/@fittracakomoli",
+            colorClass: "red-500 ",
+            icon: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 576 512"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                    aria-hidden
+                >
+                    <path d="M549.7 124.1C543.5 100.4 524.9 81.8 501.4 75.5 458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5C51.2 81.8 32.7 100.4 26.4 124.1 15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8 42.6 11.5 213.4 11.5 213.4 11.5s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6l0-162.4 142.7 81.2-142.7 81.2z" />
+                </svg>
+            ),
+        },
+    ];
 
     return (
         <>
-            <Head title="Welcome" />
-            <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-                <img
-                    id="background"
-                    className="absolute -left-20 top-0 max-w-[877px]"
-                    src="https://laravel.com/assets/img/welcome/background.svg"
-                />
-                <div className="relative flex min-h-screen flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-                    <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                        <header className="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                            <div className="flex lg:col-start-2 lg:justify-center">
-                                <svg
-                                    className="h-12 w-auto text-white lg:h-16 lg:text-[#FF2D20]"
-                                    viewBox="0 0 62 65"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M61.8548 14.6253C61.8778 14.7102 61.8895 14.7978 61.8897 14.8858V28.5615C61.8898 28.737 61.8434 28.9095 61.7554 29.0614C61.6675 29.2132 61.5409 29.3392 61.3887 29.4265L49.9104 36.0351V49.1337C49.9104 49.4902 49.7209 49.8192 49.4118 49.9987L25.4519 63.7916C25.3971 63.8227 25.3372 63.8427 25.2774 63.8639C25.255 63.8714 25.2338 63.8851 25.2101 63.8913C25.0426 63.9354 24.8666 63.9354 24.6991 63.8913C24.6716 63.8838 24.6467 63.8689 24.6205 63.8589C24.5657 63.8389 24.5084 63.8215 24.456 63.7916L0.501061 49.9987C0.348882 49.9113 0.222437 49.7853 0.134469 49.6334C0.0465019 49.4816 0.000120578 49.3092 0 49.1337L0 8.10652C0 8.01678 0.0124642 7.92953 0.0348998 7.84477C0.0423783 7.8161 0.0598282 7.78993 0.0697995 7.76126C0.0884958 7.70891 0.105946 7.65531 0.133367 7.6067C0.152063 7.5743 0.179485 7.54812 0.20192 7.51821C0.230588 7.47832 0.256763 7.43719 0.290416 7.40229C0.319084 7.37362 0.356476 7.35243 0.388883 7.32751C0.425029 7.29759 0.457436 7.26518 0.498568 7.2415L12.4779 0.345059C12.6296 0.257786 12.8015 0.211853 12.9765 0.211853C13.1515 0.211853 13.3234 0.257786 13.475 0.345059L25.4531 7.2415H25.4556C25.4955 7.26643 25.5292 7.29759 25.5653 7.32626C25.5977 7.35119 25.6339 7.37362 25.6625 7.40104C25.6974 7.43719 25.7224 7.47832 25.7523 7.51821C25.7735 7.54812 25.8021 7.5743 25.8196 7.6067C25.8483 7.65656 25.8645 7.70891 25.8844 7.76126C25.8944 7.78993 25.9118 7.8161 25.9193 7.84602C25.9423 7.93096 25.954 8.01853 25.9542 8.10652V33.7317L35.9355 27.9844V14.8846C35.9355 14.7973 35.948 14.7088 35.9704 14.6253C35.9792 14.5954 35.9954 14.5692 36.0053 14.5405C36.0253 14.4882 36.0427 14.4346 36.0702 14.386C36.0888 14.3536 36.1163 14.3274 36.1375 14.2975C36.1674 14.2576 36.1923 14.2165 36.2272 14.1816C36.2559 14.1529 36.292 14.1317 36.3244 14.1068C36.3618 14.0769 36.3942 14.0445 36.4341 14.0208L48.4147 7.12434C48.5663 7.03694 48.7383 6.99094 48.9133 6.99094C49.0883 6.99094 49.2602 7.03694 49.4118 7.12434L61.3899 14.0208C61.4323 14.0457 61.4647 14.0769 61.5021 14.1055C61.5333 14.1305 61.5694 14.1529 61.5981 14.1803C61.633 14.2165 61.6579 14.2576 61.6878 14.2975C61.7103 14.3274 61.7377 14.3536 61.7551 14.386C61.7838 14.4346 61.8 14.4882 61.8199 14.5405C61.8312 14.5692 61.8474 14.5954 61.8548 14.6253ZM59.893 27.9844V16.6121L55.7013 19.0252L49.9104 22.3593V33.7317L59.8942 27.9844H59.893ZM47.9149 48.5566V37.1768L42.2187 40.4299L25.953 49.7133V61.2003L47.9149 48.5566ZM1.99677 9.83281V48.5566L23.9562 61.199V49.7145L12.4841 43.2219L12.4804 43.2194L12.4754 43.2169C12.4368 43.1945 12.4044 43.1621 12.3682 43.1347C12.3371 43.1097 12.3009 43.0898 12.2735 43.0624L12.271 43.0586C12.2386 43.0275 12.2162 42.9888 12.1887 42.9539C12.1638 42.9203 12.1339 42.8916 12.114 42.8567L12.1127 42.853C12.0903 42.8156 12.0766 42.7707 12.0604 42.7283C12.0442 42.6909 12.023 42.656 12.013 42.6161C12.0005 42.5688 11.998 42.5177 11.9931 42.4691C11.9881 42.4317 11.9781 42.3943 11.9781 42.3569V15.5801L6.18848 12.2446L1.99677 9.83281ZM12.9777 2.36177L2.99764 8.10652L12.9752 13.8513L22.9541 8.10527L12.9752 2.36177H12.9777ZM18.1678 38.2138L23.9574 34.8809V9.83281L19.7657 12.2459L13.9749 15.5801V40.6281L18.1678 38.2138ZM48.9133 9.14105L38.9344 14.8858L48.9133 20.6305L58.8909 14.8846L48.9133 9.14105ZM47.9149 22.3593L42.124 19.0252L37.9323 16.6121V27.9844L43.7219 31.3174L47.9149 33.7317V22.3593ZM24.9533 47.987L39.59 39.631L46.9065 35.4555L36.9352 29.7145L25.4544 36.3242L14.9907 42.3482L24.9533 47.987Z"
-                                        fill="currentColor"
+            <GuestLayout>
+                <div className="mx-auto max-w-full px-8 lg:px-48">
+                    <section id="greetings" className="pt-40">
+                        <div className="md:flex justify-between items-center gap-20">
+                            <div className="flex flex-col w-full">
+                                <h3 className="text-3xl font-medium text-white mb-4">
+                                    Hello, I'm Fittra.
+                                </h3>
+                                <h1 className="text-7xl font-bold text-white">
+                                    <TextType
+                                        text={[
+                                            "Frontend",
+                                            "Backend",
+                                            "Fullstack",
+                                        ]}
+                                        typingSpeed={100}
+                                        deletingSpeed={150}
+                                        pauseDuration={1500}
+                                        showCursor={false}
+                                        cursorCharacter="|"
+                                        textColors={[
+                                            "#16a34a",
+                                            "#2563eb",
+                                            "#9333ea",
+                                        ]}
                                     />
-                                </svg>
-                            </div>
-                            <nav className="-mx-3 flex flex-1 justify-end">
-                                {auth.user ? (
-                                    <Link
-                                        href={route('dashboard')}
-                                        className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                </h1>
+                                <h1 className="text-7xl font-bold text-white">
+                                    Developer
+                                </h1>
+                                <p className="my-8 text-2xl text-gray-300">
+                                    I passionately craft web applications that
+                                    are not only visually stunning but also
+                                    deliver seamless user experiences and robust
+                                    functionality across the entire stack.
+                                </p>
+                                <div className="flex items-center gap-4">
+                                    <a
+                                        href="#projects"
+                                        className="text-white text-lg font-semibold bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 px-6 py-2 rounded-full"
                                     >
-                                        Dashboard
+                                        Explore Projects
+                                    </a>
+                                    <Link className="text-white text-lg font-semibold border border-white px-6 py-2 rounded-full">
+                                        Download CV
                                     </Link>
-                                ) : (
-                                    <>
-                                        <Link
-                                            href={route('login')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Log in
-                                        </Link>
-                                        <Link
-                                            href={route('register')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Register
-                                        </Link>
-                                    </>
-                                )}
-                            </nav>
-                        </header>
-
-                        <main className="mt-6">
-                            <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                                <a
-                                    href="https://laravel.com/docs"
-                                    id="docs-card"
-                                    className="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                                >
-                                    <div
-                                        id="screenshot-container"
-                                        className="relative flex w-full flex-1 items-stretch"
-                                    >
-                                        <img
-                                            src="https://laravel.com/assets/img/welcome/docs-light.svg"
-                                            alt="Laravel documentation screenshot"
-                                            className="aspect-video h-full w-full flex-1 rounded-[10px] object-cover object-top drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden"
-                                            onError={handleImageError}
-                                        />
-                                        <img
-                                            src="https://laravel.com/assets/img/welcome/docs-dark.svg"
-                                            alt="Laravel documentation screenshot"
-                                            className="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-cover object-top drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
-                                        />
-                                        <div className="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-gradient-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"></div>
-                                    </div>
-
-                                    <div className="relative flex items-center gap-6 lg:items-end">
-                                        <div
-                                            id="docs-card-content"
-                                            className="flex items-start gap-6 lg:flex-col"
-                                        >
-                                            <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                                <svg
-                                                    className="size-5 sm:size-6"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        fill="#FF2D20"
-                                                        d="M23 4a1 1 0 0 0-1.447-.894L12.224 7.77a.5.5 0 0 1-.448 0L2.447 3.106A1 1 0 0 0 1 4v13.382a1.99 1.99 0 0 0 1.105 1.79l9.448 4.728c.14.065.293.1.447.1.154-.005.306-.04.447-.105l9.453-4.724a1.99 1.99 0 0 0 1.1-1.789V4ZM3 6.023a.25.25 0 0 1 .362-.223l7.5 3.75a.251.251 0 0 1 .138.223v11.2a.25.25 0 0 1-.362.224l-7.5-3.75a.25.25 0 0 1-.138-.22V6.023Zm18 11.2a.25.25 0 0 1-.138.224l-7.5 3.75a.249.249 0 0 1-.329-.099.249.249 0 0 1-.033-.12V9.772a.251.251 0 0 1 .138-.224l7.5-3.75a.25.25 0 0 1 .362.224v11.2Z"
-                                                    />
-                                                    <path
-                                                        fill="#FF2D20"
-                                                        d="m3.55 1.893 8 4.048a1.008 1.008 0 0 0 .9 0l8-4.048a1 1 0 0 0-.9-1.785l-7.322 3.706a.506.506 0 0 1-.452 0L4.454.108a1 1 0 0 0-.9 1.785H3.55Z"
-                                                    />
-                                                </svg>
-                                            </div>
-
-                                            <div className="pt-3 sm:pt-5 lg:pt-0">
-                                                <h2 className="text-xl font-semibold text-black dark:text-white">
-                                                    Documentation
-                                                </h2>
-
-                                                <p className="mt-4 text-sm/relaxed">
-                                                    Laravel has wonderful
-                                                    documentation covering every
-                                                    aspect of the framework.
-                                                    Whether you are a newcomer
-                                                    or have prior experience
-                                                    with Laravel, we recommend
-                                                    reading our documentation
-                                                    from beginning to end.
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <svg
-                                            className="size-6 shrink-0 stroke-[#FF2D20]"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            strokeWidth="1.5"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                            />
-                                        </svg>
-                                    </div>
-                                </a>
-
-                                <a
-                                    href="https://laracasts.com"
-                                    className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                                >
-                                    <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                        <svg
-                                            className="size-5 sm:size-6"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <g fill="#FF2D20">
-                                                <path d="M24 8.25a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 0-.5.5v12a2.5 2.5 0 0 0 2.5 2.5h19a2.5 2.5 0 0 0 2.5-2.5v-12Zm-7.765 5.868a1.221 1.221 0 0 1 0 2.264l-6.626 2.776A1.153 1.153 0 0 1 8 18.123v-5.746a1.151 1.151 0 0 1 1.609-1.035l6.626 2.776ZM19.564 1.677a.25.25 0 0 0-.177-.427H15.6a.106.106 0 0 0-.072.03l-4.54 4.543a.25.25 0 0 0 .177.427h3.783c.027 0 .054-.01.073-.03l4.543-4.543ZM22.071 1.318a.047.047 0 0 0-.045.013l-4.492 4.492a.249.249 0 0 0 .038.385.25.25 0 0 0 .14.042h5.784a.5.5 0 0 0 .5-.5v-2a2.5 2.5 0 0 0-1.925-2.432ZM13.014 1.677a.25.25 0 0 0-.178-.427H9.101a.106.106 0 0 0-.073.03l-4.54 4.543a.25.25 0 0 0 .177.427H8.4a.106.106 0 0 0 .073-.03l4.54-4.543ZM6.513 1.677a.25.25 0 0 0-.177-.427H2.5A2.5 2.5 0 0 0 0 3.75v2a.5.5 0 0 0 .5.5h1.4a.106.106 0 0 0 .073-.03l4.54-4.543Z" />
-                                            </g>
-                                        </svg>
-                                    </div>
-
-                                    <div className="pt-3 sm:pt-5">
-                                        <h2 className="text-xl font-semibold text-black dark:text-white">
-                                            Laracasts
-                                        </h2>
-
-                                        <p className="mt-4 text-sm/relaxed">
-                                            Laracasts offers thousands of video
-                                            tutorials on Laravel, PHP, and
-                                            JavaScript development. Check them
-                                            out, see for yourself, and massively
-                                            level up your development skills in
-                                            the process.
+                                </div>
+                            </div>
+                            <div className="sm:w-2/5 my-8">
+                                <div className="border border-white p-8 rounded-full">
+                                    <img
+                                        src="/img/Capture06391.jpg"
+                                        className="rounded-full w-full object-cover"
+                                        alt="Fittra Cakomoli"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="about" className="pt-32">
+                        <div className="md:flex justify-between items-center gap-20">
+                            <div className="flex justify-center flex-col items-center w-full">
+                                <div className="w-full grid md:grid-cols-3 gap-8 mx-auto justify-between items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-lg transition-all duration-300 ease-in-out p-4">
+                                    <div className="text-white group hover:bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 p-4 rounded-lg transition-all duration-300">
+                                        <h4 className="font-semibold text-xl mb-2 text-green-600 group-hover:text-white transition-colors duration-200">
+                                            Personality Specificity
+                                        </h4>
+                                        <p className="text-lg text-justify group-hover:text-white transition-colors duration-200">
+                                            I am a Full-Stack Developer as
+                                            usually on Backend Developer focused
+                                            on creating intuitive and
+                                            user-centered interfaces or building
+                                            scalable and efficient backend
+                                            applications.
                                         </p>
                                     </div>
-
-                                    <svg
-                                        className="size-6 shrink-0 self-center stroke-[#FF2D20]"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                        />
-                                    </svg>
-                                </a>
-
-                                <a
-                                    href="https://laravel-news.com"
-                                    className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                                >
-                                    <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                        <svg
-                                            className="size-5 sm:size-6"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <g fill="#FF2D20">
-                                                <path d="M8.75 4.5H5.5c-.69 0-1.25.56-1.25 1.25v4.75c0 .69.56 1.25 1.25 1.25h3.25c.69 0 1.25-.56 1.25-1.25V5.75c0-.69-.56-1.25-1.25-1.25Z" />
-                                                <path d="M24 10a3 3 0 0 0-3-3h-2V2.5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2V20a3.5 3.5 0 0 0 3.5 3.5h17A3.5 3.5 0 0 0 24 20V10ZM3.5 21.5A1.5 1.5 0 0 1 2 20V3a.5.5 0 0 1 .5-.5h14a.5.5 0 0 1 .5.5v17c0 .295.037.588.11.874a.5.5 0 0 1-.484.625L3.5 21.5ZM22 20a1.5 1.5 0 1 1-3 0V9.5a.5.5 0 0 1 .5-.5H21a1 1 0 0 1 1 1v10Z" />
-                                                <path d="M12.751 6.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 7.3v-.5a.75.75 0 0 1 .751-.753ZM12.751 10.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 11.3v-.5a.75.75 0 0 1 .751-.753ZM4.751 14.047h10a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-10A.75.75 0 0 1 4 15.3v-.5a.75.75 0 0 1 .751-.753ZM4.75 18.047h7.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-7.5A.75.75 0 0 1 4 19.3v-.5a.75.75 0 0 1 .75-.753Z" />
-                                            </g>
-                                        </svg>
-                                    </div>
-
-                                    <div className="pt-3 sm:pt-5">
-                                        <h2 className="text-xl font-semibold text-black dark:text-white">
-                                            Laravel News
-                                        </h2>
-
-                                        <p className="mt-4 text-sm/relaxed">
-                                            Laravel News is a community driven
-                                            portal and newsletter aggregating
-                                            all of the latest and most important
-                                            news in the Laravel ecosystem,
-                                            including new package releases and
-                                            tutorials.
+                                    <div className="text-white group hover:bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 p-4 rounded-lg transition-all duration-300">
+                                        <h4 className="font-semibold text-xl mb-2 text-green-600 group-hover:text-white transition-colors duration-200">
+                                            Outcome and Goals
+                                        </h4>
+                                        <p className="text-lg text-justify group-hover:text-white transition-colors duration-200">
+                                            My main goal is to transform complex
+                                            ideas or obvious inspiration into
+                                            digital solutions that are elegant,
+                                            functional, and deliver real value
+                                            to users. I believe in measurable
+                                            outcomes.
                                         </p>
                                     </div>
-
-                                    <svg
-                                        className="size-6 shrink-0 self-center stroke-[#FF2D20]"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                        />
-                                    </svg>
-                                </a>
-
-                                <div className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800">
-                                    <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                        <svg
-                                            className="size-5 sm:size-6"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <g fill="#FF2D20">
-                                                <path d="M16.597 12.635a.247.247 0 0 0-.08-.237 2.234 2.234 0 0 1-.769-1.68c.001-.195.03-.39.084-.578a.25.25 0 0 0-.09-.267 8.8 8.8 0 0 0-4.826-1.66.25.25 0 0 0-.268.181 2.5 2.5 0 0 1-2.4 1.824.045.045 0 0 0-.045.037 12.255 12.255 0 0 0-.093 3.86.251.251 0 0 0 .208.214c2.22.366 4.367 1.08 6.362 2.118a.252.252 0 0 0 .32-.079 10.09 10.09 0 0 0 1.597-3.733ZM13.616 17.968a.25.25 0 0 0-.063-.407A19.697 19.697 0 0 0 8.91 15.98a.25.25 0 0 0-.287.325c.151.455.334.898.548 1.328.437.827.981 1.594 1.619 2.28a.249.249 0 0 0 .32.044 29.13 29.13 0 0 0 2.506-1.99ZM6.303 14.105a.25.25 0 0 0 .265-.274 13.048 13.048 0 0 1 .205-4.045.062.062 0 0 0-.022-.07 2.5 2.5 0 0 1-.777-.982.25.25 0 0 0-.271-.149 11 11 0 0 0-5.6 2.815.255.255 0 0 0-.075.163c-.008.135-.02.27-.02.406.002.8.084 1.598.246 2.381a.25.25 0 0 0 .303.193 19.924 19.924 0 0 1 5.746-.438ZM9.228 20.914a.25.25 0 0 0 .1-.393 11.53 11.53 0 0 1-1.5-2.22 12.238 12.238 0 0 1-.91-2.465.248.248 0 0 0-.22-.187 18.876 18.876 0 0 0-5.69.33.249.249 0 0 0-.179.336c.838 2.142 2.272 4 4.132 5.353a.254.254 0 0 0 .15.048c1.41-.01 2.807-.282 4.117-.802ZM18.93 12.957l-.005-.008a.25.25 0 0 0-.268-.082 2.21 2.21 0 0 1-.41.081.25.25 0 0 0-.217.2c-.582 2.66-2.127 5.35-5.75 7.843a.248.248 0 0 0-.09.299.25.25 0 0 0 .065.091 28.703 28.703 0 0 0 2.662 2.12.246.246 0 0 0 .209.037c2.579-.701 4.85-2.242 6.456-4.378a.25.25 0 0 0 .048-.189 13.51 13.51 0 0 0-2.7-6.014ZM5.702 7.058a.254.254 0 0 0 .2-.165A2.488 2.488 0 0 1 7.98 5.245a.093.093 0 0 0 .078-.062 19.734 19.734 0 0 1 3.055-4.74.25.25 0 0 0-.21-.41 12.009 12.009 0 0 0-10.4 8.558.25.25 0 0 0 .373.281 12.912 12.912 0 0 1 4.826-1.814ZM10.773 22.052a.25.25 0 0 0-.28-.046c-.758.356-1.55.635-2.365.833a.25.25 0 0 0-.022.48c1.252.43 2.568.65 3.893.65.1 0 .2 0 .3-.008a.25.25 0 0 0 .147-.444c-.526-.424-1.1-.917-1.673-1.465ZM18.744 8.436a.249.249 0 0 0 .15.228 2.246 2.246 0 0 1 1.352 2.054c0 .337-.08.67-.23.972a.25.25 0 0 0 .042.28l.007.009a15.016 15.016 0 0 1 2.52 4.6.25.25 0 0 0 .37.132.25.25 0 0 0 .096-.114c.623-1.464.944-3.039.945-4.63a12.005 12.005 0 0 0-5.78-10.258.25.25 0 0 0-.373.274c.547 2.109.85 4.274.901 6.453ZM9.61 5.38a.25.25 0 0 0 .08.31c.34.24.616.561.8.935a.25.25 0 0 0 .3.127.631.631 0 0 1 .206-.034c2.054.078 4.036.772 5.69 1.991a.251.251 0 0 0 .267.024c.046-.024.093-.047.141-.067a.25.25 0 0 0 .151-.23A29.98 29.98 0 0 0 15.957.764a.25.25 0 0 0-.16-.164 11.924 11.924 0 0 0-2.21-.518.252.252 0 0 0-.215.076A22.456 22.456 0 0 0 9.61 5.38Z" />
-                                            </g>
-                                        </svg>
-                                    </div>
-
-                                    <div className="pt-3 sm:pt-5">
-                                        <h2 className="text-xl font-semibold text-black dark:text-white">
-                                            Vibrant Ecosystem
-                                        </h2>
-
-                                        <p className="mt-4 text-sm/relaxed">
-                                            Laravel's robust library of
-                                            first-party tools and libraries,
-                                            such as{' '}
-                                            <a
-                                                href="https://forge.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]"
-                                            >
-                                                Forge
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://vapor.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Vapor
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://nova.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Nova
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://envoyer.io"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Envoyer
-                                            </a>
-                                            , and{' '}
-                                            <a
-                                                href="https://herd.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Herd
-                                            </a>{' '}
-                                            help you take your projects to the
-                                            next level. Pair them with powerful
-                                            open source libraries like{' '}
-                                            <a
-                                                href="https://laravel.com/docs/billing"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Cashier
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://laravel.com/docs/dusk"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Dusk
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://laravel.com/docs/broadcasting"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Echo
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://laravel.com/docs/horizon"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Horizon
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://laravel.com/docs/sanctum"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Sanctum
-                                            </a>
-                                            ,{' '}
-                                            <a
-                                                href="https://laravel.com/docs/telescope"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                            >
-                                                Telescope
-                                            </a>
-                                            , and more.
+                                    <div className="text-white group hover:bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 p-4 rounded-lg transition-all duration-300">
+                                        <h4 className="font-semibold text-xl mb-2 text-green-600 group-hover:text-white transition-colors duration-200">
+                                            Growth Mindset and Collaboration
+                                        </h4>
+                                        <p className="text-lg text-justify">
+                                            I have a strong appetite for new
+                                            knowledge about Full-Stack
+                                            Developer, and I excel in
+                                            collaborative team environments. I
+                                            am ready to bring my enthusiasm for
+                                            learning and my technical skills to
+                                            your next project.
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                        </main>
+                        </div>
+                    </section>
+                    <section id="skills" className="pt-32">
+                        <div className="md:flex justify-between items-center gap-20">
+                            <div className="flex justify-center flex-col items-center w-full">
+                                <h3 className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text text-4xl font-bold mb-2">
+                                    Familiar Tools
+                                </h3>
+                                <p className="text-white text-center mb-8">
+                                    Some tools and tech-stack I have used to my
+                                    projects.
+                                </p>
+                                <div className="w-full grid grid-cols-3 md:grid-cols-9 gap-2">
+                                    {tools.map((tools, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="flex w-full items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 rounded-lg transition-all duration-300 ease-in-out p-4 text-center text-white"
+                                        >
+                                            <div className="flex flex-col justify-center items-center gap-2">
+                                                <img
+                                                    src={tools.path}
+                                                    alt={tools.label}
+                                                    className="h-8 mb-2"
+                                                />
+                                                <p>{tools.label}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="journey" className="pt-32">
+                        <div className="md:flex justify-between items-center gap-20">
+                            <div className="flex justify-center flex-col items-center w-full">
+                                <h3 className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text text-4xl font-bold mb-2">
+                                    Amazing Journey
+                                </h3>
+                                <p className="text-white text-center mb-8">
+                                    Some tools and tech-stack I have used to my
+                                    projects.
+                                </p>
 
-                        <footer className="py-16 text-center text-sm text-black dark:text-white/70">
-                            Laravel v{laravelVersion} (PHP v{phpVersion})
-                        </footer>
-                    </div>
+                                <div className="w-full md:flex gap-4">
+                                    <div className="w-full mx-auto relative px-6">
+                                        <div className="py-4 text-center rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600">
+                                            <h3 className="text-white text-xl font-semibold">
+                                                Academic Journey
+                                            </h3>
+                                        </div>
+                                        {/* vertical line */}
+                                        <div className="absolute left-12 top-0 -z-10 bottom-0 w-px bg-white/20"></div>
+
+                                        <div className="mt-12">
+                                            {academicJourney.map(
+                                                (item, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className="mb-12 flex items-center gap-6"
+                                                    >
+                                                        <div className="flex flex-col items-center">
+                                                            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 flex items-center justify-center text-white font-semibold text-sm"></div>
+                                                            {idx !==
+                                                                academicJourney.length -
+                                                                    1 && (
+                                                                <div className="w-px bg-white/10 flex-1 mt-2" />
+                                                            )}
+                                                        </div>
+
+                                                        <div className="ml-4 bg-white/5 p-4 rounded-lg border border-white/10 text-white w-full">
+                                                            <h4 className="font-semibold text-base">
+                                                                {item.year} -{" "}
+                                                                {item.endyear}
+                                                            </h4>
+                                                            <h4 className="font-semibold text-lg bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text">
+                                                                {item.title}
+                                                            </h4>
+                                                            <p className="text-base text-gray-300 mt-1">
+                                                                {item.desc}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="w-full mx-auto relative px-6">
+                                        <div className="py-4 text-center rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600">
+                                            <h3 className="text-white text-xl font-semibold">
+                                                Organization Calling
+                                            </h3>
+                                        </div>
+                                        {/* vertical line */}
+                                        <div className="absolute left-12 top-0 -z-10 bottom-0 w-px bg-white/20"></div>
+
+                                        <div className="mt-12">
+                                            {orgJourney.map((item, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="mb-12 flex items-center gap-6"
+                                                >
+                                                    <div className="flex flex-col items-center">
+                                                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 flex items-center justify-center text-white font-semibold text-sm"></div>
+                                                        {idx !==
+                                                            orgJourney.length -
+                                                                1 && (
+                                                            <div className="w-px bg-white/10 flex-1 mt-2" />
+                                                        )}
+                                                    </div>
+
+                                                    <div className="ml-4 bg-white/5 p-4 rounded-lg border border-white/10 text-white w-full">
+                                                        <h4 className="font-semibold text-base">
+                                                            {item.year} -{" "}
+                                                            {item.endyear}
+                                                        </h4>
+                                                        <h4 className="font-semibold text-lg bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text">
+                                                            {item.title}
+                                                        </h4>
+                                                        <p className="text-base text-gray-300 mt-1">
+                                                            {item.desc}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="w-full mx-auto relative px-6">
+                                        <div className="py-4 text-center rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600">
+                                            <h3 className="text-white text-xl font-semibold">
+                                                Certification
+                                            </h3>
+                                        </div>
+                                        {/* vertical line */}
+                                        <div className="absolute left-12 top-0 -z-10 bottom-0 w-px bg-white/20"></div>
+
+                                        <div className="mt-12">
+                                            {certification.map((item, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="mb-12 flex items-center gap-6"
+                                                >
+                                                    <div className="flex flex-col items-center">
+                                                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 flex items-center justify-center text-white font-semibold text-sm"></div>
+                                                        {idx !==
+                                                            certification.length -
+                                                                1 && (
+                                                            <div className="w-px bg-white/10 flex-1 mt-2" />
+                                                        )}
+                                                    </div>
+
+                                                    <div className="ml-4 bg-white/5 p-4 rounded-lg border border-white/10 text-white w-full">
+                                                        <h4 className="font-semibold text-base">
+                                                            {item.year}
+                                                        </h4>
+                                                        <h4 className="font-semibold text-lg bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text">
+                                                            {item.title}
+                                                        </h4>
+                                                        <p className="text-base text-gray-300 mt-1">
+                                                            {item.desc}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="projects" className="pt-32">
+                        <div className="md:flex justify-between items-center gap-20">
+                            <div className="flex justify-center flex-col items-center w-full">
+                                <h3 className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text text-4xl font-bold mb-2">
+                                    Projects Experience
+                                </h3>
+                                <p className="text-white text-center mb-8">
+                                    Some tools and tech-stack I have used to my
+                                    projects.
+                                </p>
+
+                                <div className="w-full grid md:grid-cols-3 gap-4">
+                                    {projects.map((project, index) => (
+                                        <SpotlightCard
+                                            key={index}
+                                            className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl custom-spotlight-card"
+                                            spotlightColor="rgba(255, 255, 255, 0.1)"
+                                        >
+                                            <div className="z-10">
+                                                <div className="aspect-video w-full">
+                                                    <img
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="object-cover w-full h-full rounded-lg"
+                                                    />
+                                                </div>
+
+                                                <h3 className="py-4 font-black text-3xl bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text">
+                                                    {project.title}
+                                                </h3>
+
+                                                <p className="text-white text-lg">
+                                                    {project.description}
+                                                </p>
+
+                                                <div className="w-full flex flex-wrap gap-2 pt-4">
+                                                    {project.techStack.map(
+                                                        (tech, techIndex) => (
+                                                            <span
+                                                                key={techIndex}
+                                                                className="bg-gradient-to-r from-green-600/50 via-blue-600/50 to-purple-600/50 px-4 py-1 rounded-full text-white font-semibold text-sm"
+                                                            >
+                                                                {tech}
+                                                            </span>
+                                                        )
+                                                    )}
+                                                </div>
+
+                                                <div className="mt-4 flex gap-3">
+                                                    {project.repoUrl ? (
+                                                        <a
+                                                            href={
+                                                                project.repoUrl
+                                                            }
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="inline-flex justify-center text-center items-center px-4 py-2 border border-white text-white rounded-full w-full font-semibold"
+                                                            aria-label={`View repository for ${project.title}`}
+                                                        >
+                                                            View Repository
+                                                        </a>
+                                                    ) : (
+                                                        <button
+                                                            type="button"
+                                                            disabled
+                                                            className="border hidden text-center border-white inline-flex justify-center items-center px-4 py-2 bg-white/6 text-white rounded-full w-full font-semibold opacity-40 cursor-not-allowed"
+                                                        >
+                                                            View Repository
+                                                        </button>
+                                                    )}
+
+                                                    {project.link ? (
+                                                        <a
+                                                            href={project.link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="w-full text-center inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold"
+                                                            aria-label={`Visit site for ${project.title}`}
+                                                        >
+                                                            Visit Site
+                                                        </a>
+                                                    ) : (
+                                                        <button
+                                                            type="button"
+                                                            disabled
+                                                            className="w-full hidden text-center inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold opacity-40 cursor-not-allowed"
+                                                        >
+                                                            Visit Site
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </SpotlightCard>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="contacts" className="py-32">
+                        <div className="md:flex justify-between items-center gap-20">
+                            <div className="flex justify-center flex-col items-center w-full">
+                                <h3 className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text text-4xl font-bold mb-2">
+                                    Let's Collaborate
+                                </h3>
+                                <p className="text-white text-center mb-8">
+                                    Some tools and tech-stack I have used to my
+                                    projects.
+                                </p>
+
+                                <div className="w-full md:flex">
+                                    <form
+                                        action=""
+                                        method="POST"
+                                        class="bg-transparent pe-8 w-full mx-auto rounded-md"
+                                        autocomplete="off"
+                                    >
+                                        <div class="flex flex-col gap-6 text-white">
+                                            <div class="flex flex-col gap-2">
+                                                <label class="font-semibold text-lg">
+                                                    Name
+                                                </label>
+                                                <input
+                                                    placeholder="Your Full Name"
+                                                    class="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
+                                                    required=""
+                                                    type="text"
+                                                    name="name"
+                                                />
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <label class="font-semibold text-lg">
+                                                    Email
+                                                </label>
+                                                <input
+                                                    placeholder="youremail@example.com"
+                                                    class="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
+                                                    required=""
+                                                    type="email"
+                                                    name="email"
+                                                />
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <label class="font-semibold text-lg">
+                                                    Message
+                                                </label>
+                                                <textarea
+                                                    name="message"
+                                                    id="message"
+                                                    cols="45"
+                                                    rows="7"
+                                                    placeholder="Hello! I'm interested in collaborating with you on..."
+                                                    class="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
+                                                    required=""
+                                                ></textarea>
+                                            </div>
+                                            <div>
+                                                <button
+                                                    type="submit"
+                                                    class="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 px-5 py-2 rounded-full block font-semibold hover:font-bold transition-all hover:scale-101"
+                                                >
+                                                    Send Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div className="flex flex-col items-start md:items-end w-full md:ps-8 py-8">
+                                        <div className="flex flex-col gap-4 justify-center w-full">
+                                            {socials.map((s) => (
+                                                <div
+                                                    key={s.name}
+                                                    className="flex items-center justify-between gap-4 bg-white/4 border border-white/10 rounded-xl p-3 hover:shadow-lg transition-transform transform hover:-translate-y-1"
+                                                >
+                                                    <div className="flex items-center gap-3">
+                                                        <span
+                                                            className={`flex items-center justify-center w-12 h-12 rounded-full text-white shadow-md bg-${s.colorClass}`}
+                                                        >
+                                                            {s.icon}
+                                                        </span>
+                                                        <div className="text-left">
+                                                            <h4 className="font-semibold text-white">
+                                                                {s.desc}
+                                                            </h4>
+                                                            <p className="text-sm text-gray-300">
+                                                                {s.subDesc}
+                                                            </p>
+                                                            <p className="text-xs text-gray-400 truncate max-w-[220px] mt-1">
+                                                                {s.url.replace(
+                                                                    /^https?:\/\//,
+                                                                    ""
+                                                                )}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <a
+                                                            href={s.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="inline-flex items-center gap-2 px-4 py-2 bg-white/8 hover:bg-white/12 text-white rounded-lg font-semibold transition"
+                                                        >
+                                                            <span className="hidden sm:inline">
+                                                                Open
+                                                            </span>
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 24 24"
+                                                                width="16"
+                                                                height="16"
+                                                                className="opacity-90"
+                                                            >
+                                                                <path
+                                                                    fill="currentColor"
+                                                                    d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"
+                                                                />
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </div>
+            </GuestLayout>
         </>
     );
 }

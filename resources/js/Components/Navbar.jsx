@@ -74,7 +74,7 @@ const Navbar = ({
                             color: buttonTextColor,
                         }}
                     >
-                        Download Resume
+                        Download CV
                     </a>
                 </div>
 

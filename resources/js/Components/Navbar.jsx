@@ -65,8 +65,9 @@ const Navbar = ({
                         </a>
                     ))}
 
-                    <button
-                        type="button"
+                    <a
+                        href="assets/CV - Fittra Marga Ardana.pdf"
+                        download="CV_Fittra_Marga_Ardana.pdf"
                         className="inline-flex border-0 rounded-full px-4 py-2 items-center font-medium cursor-pointer transition-colors duration-300"
                         style={{
                             backgroundColor: buttonBgColor,
@@ -74,7 +75,7 @@ const Navbar = ({
                         }}
                     >
                         Download CV
-                    </button>
+                    </a>
                 </div>
 
                 <button

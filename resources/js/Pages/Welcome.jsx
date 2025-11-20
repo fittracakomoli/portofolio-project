@@ -1,9 +1,10 @@
-import { Head, Link } from "@inertiajs/react";
+import { useForm, Link } from "@inertiajs/react";
 import GuestLayout from "@/Layouts/GuestLayout";
+import InputError from "@/Components/InputError";
 import TextType from "@/Components/TextType";
 import SpotlightCard from "@/Components/SpotlightCard";
 
-export default function Welcome() {
+export default function Welcome({ projects }) {
     const tools = [
         {
             label: "PHP",
@@ -85,19 +86,6 @@ export default function Welcome() {
             label: "Illustrator",
             path: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/512px-Adobe_Illustrator_CC_icon.svg.png?20251029195730",
         },
-        {
-            label: "OBS Studio",
-            path: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/OBS_Studio_Logo.svg/1024px-OBS_Studio_Logo.svg.png",
-        },
-        {
-            label: "vMix",
-            path: "https://images.seeklogo.com/logo-png/43/2/vmix-logo-png_seeklogo-433108.png",
-        },
-        { label: "React", path: "#" },
-        { label: "React", path: "#" },
-        { label: "React", path: "#" },
-        { label: "React", path: "#" },
-        { label: "React", path: "#" },
     ];
 
     const academicJourney = [
@@ -151,112 +139,13 @@ export default function Welcome() {
         },
     ];
 
-    const projects = [
-        {
-            title: "Hima Ilkom Official Website",
-            link: "https://himailkomunnes.com",
-            image: "/img/himailkom.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Laravel", "React"],
-        },
-        {
-            title: "Attendance Website",
-            link: "https://presensi.himailkomunnes.com",
-            image: "/img/presensi.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Laravel", "React"],
-        },
-        {
-            title: "Ticket-Ink",
-            link: "#",
-            image: "/img/ticketink.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Laravel", "Blade"],
-        },
-        {
-            title: "Kentucky Catering",
-            link: "#",
-            image: "/img/catering.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["HTML", "CSS", "JavaScript"],
-        },
-        {
-            title: "Eternal Commerce",
-            link: "#",
-            image: "/img/eternal.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["HTML", "CSS", "JavaScript"],
-        },
-        {
-            title: "Wedding Invitation",
-            link: "#",
-            image: "/img/wedding.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["HTML", "CSS"],
-        },
-        {
-            title: "Restorasi Citra",
-            link: "#",
-            image: "/img/restorasi.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Python", "Flask", "MatLab"],
-        },
-        {
-            title: "Laptop Recommendation",
-            link: "#",
-            image: "/img/laptop.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Python", "Flask", "Random Forest"],
-        },
-        {
-            title: "SIRINA",
-            link: "#",
-            image: "/img/sirina.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Figma"],
-        },
-        {
-            title: "KarirNess",
-            link: "#",
-            image: "/img/karirness.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Figma"],
-        },
-        {
-            title: "Disaster Alert",
-            link: "#",
-            image: "/img/disaster.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Figma"],
-        },
-        {
-            title: "LogiLink",
-            link: "#",
-            image: "/img/logilink.png",
-            description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad voluptates dolorum numquam culpa accusantium aspernatur minus cumque temporibus, adipisci earum.",
-            techStack: ["Figma"],
-        },
-    ];
-
     const socials = [
         {
             name: "Explore",
             desc: "GitHub",
             subDesc: "Repositories & Projects",
             url: "https://github.com/fittracakomoli",
-            colorClass: "gray-500",
+            colorClass: "bg-gray-500",
             icon: (
                 <svg
                     viewBox="0 0 24 24"
@@ -273,7 +162,7 @@ export default function Welcome() {
             desc: "LinkedIn",
             subDesc: "Professional Profile",
             url: "https://www.linkedin.com/in/fittra-marga-ardana",
-            colorClass: "blue-500",
+            colorClass: "bg-blue-500",
             icon: (
                 <svg
                     viewBox="0 0 24 24"
@@ -285,12 +174,31 @@ export default function Welcome() {
                 </svg>
             ),
         },
+
+        {
+            name: "Watch",
+            desc: "Email",
+            subDesc: "Send Email",
+            url: "mailto:fittracakomoli@gmail.com",
+            colorClass: "bg-yellow-500 ",
+            icon: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                    aria-hidden
+                >
+                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                </svg>
+            ),
+        },
         {
             name: "Stalk",
             desc: "Instagram",
             subDesc: "Photo & Video Sharing",
             url: "https://instagram.com/fittracakomoli",
-            colorClass: "pink-500 ",
+            colorClass: "bg-pink-500 ",
             icon: (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -303,25 +211,24 @@ export default function Welcome() {
                 </svg>
             ),
         },
-        {
-            name: "Watch",
-            desc: "YouTube",
-            subDesc: "Video Content",
-            url: "https://www.youtube.com/@fittracakomoli",
-            colorClass: "red-500 ",
-            icon: (
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"
-                    fill="currentColor"
-                    className="w-5 h-5"
-                    aria-hidden
-                >
-                    <path d="M549.7 124.1C543.5 100.4 524.9 81.8 501.4 75.5 458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5C51.2 81.8 32.7 100.4 26.4 124.1 15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8 42.6 11.5 213.4 11.5 213.4 11.5s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6l0-162.4 142.7 81.2-142.7 81.2z" />
-                </svg>
-            ),
-        },
     ];
+
+    const { data, setData, post, processing, errors, wasSuccessful, reset } =
+        useForm({
+            name: "",
+            email: "",
+            message: "",
+        });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post(route("messages.store"), {
+            preserveScroll: true,
+            onSuccess: () => reset(),
+        });
+    };
+
+    const cvPath = "assets/CV - Fittra Marga Ardana.pdf";
 
     return (
         <>
@@ -356,10 +263,11 @@ export default function Welcome() {
                                     Developer
                                 </h1>
                                 <p className="my-8 text-2xl text-gray-300">
-                                    I passionately craft web applications that
-                                    are not only visually stunning but also
-                                    deliver seamless user experiences and robust
-                                    functionality across the entire stack.
+                                    A person passionate about web development,
+                                    especially backend development. Experienced
+                                    in building full-stack projects and always
+                                    eager to learn new technologies to deliver
+                                    clean, efficient, and scalable solutions.
                                 </p>
                                 <div className="flex items-center gap-4">
                                     <a
@@ -368,9 +276,13 @@ export default function Welcome() {
                                     >
                                         Explore Projects
                                     </a>
-                                    <Link className="text-white text-lg font-semibold border border-white px-6 py-2 rounded-full">
+                                    <a
+                                        href={cvPath}
+                                        download="CV_Fittra_Marga_Ardana.pdf"
+                                        className="text-white text-lg font-semibold border border-white px-6 py-2 rounded-full"
+                                    >
                                         Download CV
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                             <div className="sm:w-2/5 my-8">
@@ -390,42 +302,46 @@ export default function Welcome() {
                                 <div className="w-full grid md:grid-cols-3 gap-8 mx-auto justify-between items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-lg transition-all duration-300 ease-in-out p-4">
                                     <div className="text-white group hover:bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 p-4 rounded-lg transition-all duration-300">
                                         <h4 className="font-semibold text-xl mb-2 text-green-600 group-hover:text-white transition-colors duration-200">
-                                            Personality Specificity
+                                            Driven by Curiosity & Precision
                                         </h4>
                                         <p className="text-lg text-justify group-hover:text-white transition-colors duration-200">
-                                            I am a Full-Stack Developer as
-                                            usually on Backend Developer focused
-                                            on creating intuitive and
-                                            user-centered interfaces or building
-                                            scalable and efficient backend
-                                            applications.
+                                            Detail-oriented, curious, and highly
+                                            driven. I approach challenges with a
+                                            structured mindset while staying
+                                            adaptable in fast-changing
+                                            environments. I enjoy exploring
+                                            technical problems deeply and
+                                            continuously improving through
+                                            learning and experimentation.
                                         </p>
                                     </div>
                                     <div className="text-white group hover:bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 p-4 rounded-lg transition-all duration-300">
                                         <h4 className="font-semibold text-xl mb-2 text-green-600 group-hover:text-white transition-colors duration-200">
-                                            Outcome and Goals
+                                            Building Toward a Future
                                         </h4>
                                         <p className="text-lg text-justify group-hover:text-white transition-colors duration-200">
-                                            My main goal is to transform complex
-                                            ideas or obvious inspiration into
-                                            digital solutions that are elegant,
-                                            functional, and deliver real value
-                                            to users. I believe in measurable
-                                            outcomes.
+                                            Focused on growing as a strong
+                                            backend developer with the long-term
+                                            ambition of becoming a versatile
+                                            engineer across multiple domains. My
+                                            goal is to create efficient,
+                                            scalable, and meaningful solutions
+                                            that deliver real value.
                                         </p>
                                     </div>
                                     <div className="text-white group hover:bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 p-4 rounded-lg transition-all duration-300">
                                         <h4 className="font-semibold text-xl mb-2 text-green-600 group-hover:text-white transition-colors duration-200">
-                                            Growth Mindset and Collaboration
+                                            Collaboration That Elevates the
+                                            Entire Team
                                         </h4>
                                         <p className="text-lg text-justify">
-                                            I have a strong appetite for new
-                                            knowledge about Full-Stack
-                                            Developer, and I excel in
-                                            collaborative team environments. I
-                                            am ready to bring my enthusiasm for
-                                            learning and my technical skills to
-                                            your next project.
+                                            A proactive team player who values
+                                            clear communication, constructive
+                                            feedback, and shared success. I
+                                            thrive in collaborative environments
+                                            whether designing systems, refining
+                                            features, or solving complex
+                                            problems together.
                                         </p>
                                     </div>
                                 </div>
@@ -439,8 +355,7 @@ export default function Welcome() {
                                     Familiar Tools
                                 </h3>
                                 <p className="text-white text-center mb-8">
-                                    Some tools and tech-stack I have used to my
-                                    projects.
+                                    The Tools Behind My Development Workflow
                                 </p>
                                 <div className="w-full grid grid-cols-3 md:grid-cols-9 gap-2">
                                     {tools.map((tools, idx) => (
@@ -469,8 +384,8 @@ export default function Welcome() {
                                     Amazing Journey
                                 </h3>
                                 <p className="text-white text-center mb-8">
-                                    Some tools and tech-stack I have used to my
-                                    projects.
+                                    A Journey Fueled by Determination &
+                                    Discovery
                                 </p>
 
                                 <div className="w-full md:flex gap-4">
@@ -606,94 +521,118 @@ export default function Welcome() {
                                     Projects Experience
                                 </h3>
                                 <p className="text-white text-center mb-8">
-                                    Some tools and tech-stack I have used to my
-                                    projects.
+                                    Hands-On Experience Through Real Projects
                                 </p>
 
-                                <div className="w-full grid md:grid-cols-3 gap-4">
-                                    {projects.map((project, index) => (
-                                        <SpotlightCard
-                                            key={index}
-                                            className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl custom-spotlight-card"
-                                            spotlightColor="rgba(255, 255, 255, 0.1)"
-                                        >
-                                            <div className="z-10">
-                                                <div className="aspect-video w-full">
-                                                    <img
-                                                        src={project.image}
-                                                        alt={project.title}
-                                                        className="object-cover w-full h-full rounded-lg"
-                                                    />
-                                                </div>
+                                {projects.length > 0 ? (
+                                    <>
+                                        {projects.map((project) => (
+                                            <div className="w-full grid md:grid-cols-3 gap-4">
+                                                <SpotlightCard
+                                                    key={project.id}
+                                                    className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl custom-spotlight-card"
+                                                    spotlightColor="rgba(255, 255, 255, 0.1)"
+                                                >
+                                                    <div className="z-10">
+                                                        <div className="aspect-video w-full">
+                                                            <img
+                                                                src={
+                                                                    project.image
+                                                                }
+                                                                alt={
+                                                                    project.title
+                                                                }
+                                                                className="object-cover w-full h-full rounded-lg"
+                                                            />
+                                                        </div>
 
-                                                <h3 className="py-4 font-black text-3xl bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text">
-                                                    {project.title}
-                                                </h3>
+                                                        <h3 className="py-4 font-black text-3xl bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 inline-block text-transparent bg-clip-text">
+                                                            {project.title}
+                                                        </h3>
 
-                                                <p className="text-white text-lg">
-                                                    {project.description}
-                                                </p>
-
-                                                <div className="w-full flex flex-wrap gap-2 pt-4">
-                                                    {project.techStack.map(
-                                                        (tech, techIndex) => (
-                                                            <span
-                                                                key={techIndex}
-                                                                className="bg-gradient-to-r from-green-600/50 via-blue-600/50 to-purple-600/50 px-4 py-1 rounded-full text-white font-semibold text-sm"
-                                                            >
-                                                                {tech}
-                                                            </span>
-                                                        )
-                                                    )}
-                                                </div>
-
-                                                <div className="mt-4 flex gap-3">
-                                                    {project.repoUrl ? (
-                                                        <a
-                                                            href={
-                                                                project.repoUrl
+                                                        <p className="text-white text-lg">
+                                                            {
+                                                                project.description
                                                             }
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="inline-flex justify-center text-center items-center px-4 py-2 border border-white text-white rounded-full w-full font-semibold"
-                                                            aria-label={`View repository for ${project.title}`}
-                                                        >
-                                                            View Repository
-                                                        </a>
-                                                    ) : (
-                                                        <button
-                                                            type="button"
-                                                            disabled
-                                                            className="border hidden text-center border-white justify-center items-center px-4 py-2 bg-white/6 text-white rounded-full w-full font-semibold opacity-40 cursor-not-allowed"
-                                                        >
-                                                            View Repository
-                                                        </button>
-                                                    )}
+                                                        </p>
 
-                                                    {project.link ? (
-                                                        <a
-                                                            href={project.link}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="w-full text-center inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold"
-                                                            aria-label={`Visit site for ${project.title}`}
-                                                        >
-                                                            Visit Site
-                                                        </a>
-                                                    ) : (
-                                                        <button
-                                                            type="button"
-                                                            disabled
-                                                            className="w-full hidden text-center justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold opacity-40 cursor-not-allowed"
-                                                        >
-                                                            Visit Site
-                                                        </button>
-                                                    )}
-                                                </div>
+                                                        <div className="w-full flex flex-wrap gap-2 pt-4">
+                                                            {JSON.parse(
+                                                                project.tech
+                                                            ).map(
+                                                                (
+                                                                    tag,
+                                                                    index
+                                                                ) => (
+                                                                    <span
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                        className="bg-gradient-to-r from-green-600/50 via-blue-600/50 to-purple-600/50 px-4 py-1 rounded-full text-white font-semibold text-sm"
+                                                                    >
+                                                                        {tag}
+                                                                    </span>
+                                                                )
+                                                            )}
+                                                        </div>
+
+                                                        <div className="mt-4 flex gap-3">
+                                                            {project.repo_link ? (
+                                                                <a
+                                                                    href={
+                                                                        project.repo_link
+                                                                    }
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="inline-flex justify-center text-center items-center px-4 py-2 border border-white text-white rounded-full w-full font-semibold"
+                                                                    aria-label={`View repository for ${project.title}`}
+                                                                >
+                                                                    View
+                                                                    Repository
+                                                                </a>
+                                                            ) : (
+                                                                <button
+                                                                    type="button"
+                                                                    disabled
+                                                                    className="border hidden text-center border-white justify-center items-center px-4 py-2 bg-white/6 text-white rounded-full w-full font-semibold opacity-40 cursor-not-allowed"
+                                                                >
+                                                                    View
+                                                                    Repository
+                                                                </button>
+                                                            )}
+
+                                                            {project.visit_link ? (
+                                                                <a
+                                                                    href={
+                                                                        project.visit_link
+                                                                    }
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="w-full text-center inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold"
+                                                                    aria-label={`Visit site for ${project.title}`}
+                                                                >
+                                                                    Visit Site
+                                                                </a>
+                                                            ) : (
+                                                                <button
+                                                                    type="button"
+                                                                    disabled
+                                                                    className="w-full hidden text-center justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-full font-semibold opacity-40 cursor-not-allowed"
+                                                                >
+                                                                    Visit Site
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </SpotlightCard>
                                             </div>
-                                        </SpotlightCard>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <p className="w-full bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl text-center text-white">
+                                        No projects available at the moment.
+                                    </p>
+                                )}
                             </div>
                         </div>
                     </section>
@@ -704,76 +643,117 @@ export default function Welcome() {
                                     Let's Collaborate
                                 </h3>
                                 <p className="text-white text-center mb-8">
-                                    Some tools and tech-stack I have used to my
-                                    projects.
+                                    Ready to Connect, Collaborate, and Create
                                 </p>
 
                                 <div className="w-full md:flex">
-                                    <form
-                                        action=""
-                                        method="POST"
-                                        class="bg-transparent pe-8 w-full mx-auto rounded-md"
-                                        autocomplete="off"
-                                    >
-                                        <div class="flex flex-col gap-6 text-white">
-                                            <div class="flex flex-col gap-2">
-                                                <label class="font-semibold text-lg">
-                                                    Name
-                                                </label>
-                                                <input
-                                                    placeholder="Your Full Name"
-                                                    class="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
-                                                    required=""
-                                                    type="text"
-                                                    name="name"
-                                                />
-                                            </div>
-                                            <div class="flex flex-col gap-2">
-                                                <label class="font-semibold text-lg">
-                                                    Email
-                                                </label>
-                                                <input
-                                                    placeholder="youremail@example.com"
-                                                    class="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
-                                                    required=""
-                                                    type="email"
-                                                    name="email"
-                                                />
-                                            </div>
-                                            <div class="flex flex-col gap-2">
-                                                <label class="font-semibold text-lg">
-                                                    Message
-                                                </label>
-                                                <textarea
-                                                    name="message"
-                                                    id="message"
-                                                    cols="45"
-                                                    rows="7"
-                                                    placeholder="Hello! I'm interested in collaborating with you on..."
-                                                    class="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
-                                                    required=""
-                                                ></textarea>
-                                            </div>
-                                            <div>
-                                                <button
-                                                    type="submit"
-                                                    class="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 px-5 py-2 rounded-full block font-semibold hover:font-bold transition-all hover:scale-101"
-                                                >
-                                                    Send Message
-                                                </button>
-                                            </div>
+                                    {wasSuccessful ? (
+                                        <div className="p-6 w-full rounded-lg h-fit bg-green-500 text-white font-semibold">
+                                            Pesan Anda telah terkirim. Terima
+                                            kasih! Kami akan segera meresponnya.
                                         </div>
-                                    </form>
-                                    <div className="flex flex-col items-start md:items-end w-full md:ps-8 py-8">
+                                    ) : (
+                                        <form
+                                            onSubmit={handleSubmit}
+                                            method="POST"
+                                            className="bg-transparent pe-8 w-full mx-auto rounded-md"
+                                            autoComplete="off"
+                                        >
+                                            <div className="flex flex-col gap-6 text-white">
+                                                <div className="flex flex-col gap-2">
+                                                    <label className="font-semibold text-lg">
+                                                        Name
+                                                    </label>
+                                                    <input
+                                                        placeholder="Your Full Name"
+                                                        className="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
+                                                        value={data.name}
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "name",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
+                                                        type="text"
+                                                        name="name"
+                                                    />
+                                                    <InputError
+                                                        message={errors.name}
+                                                        className="mt-2"
+                                                    />
+                                                </div>
+                                                <div className="flex flex-col gap-2">
+                                                    <label className="font-semibold text-lg">
+                                                        Email
+                                                    </label>
+                                                    <input
+                                                        placeholder="youremail@example.com"
+                                                        className="bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
+                                                        required
+                                                        value={data.email}
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "email",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        type="email"
+                                                        name="email"
+                                                    />
+                                                    <InputError
+                                                        message={errors.email}
+                                                        className="mt-2"
+                                                    />
+                                                </div>
+                                                <div className="flex flex-col gap-2">
+                                                    <label className="font-semibold text-lg">
+                                                        Message
+                                                    </label>
+                                                    <textarea
+                                                        name="message"
+                                                        id="message"
+                                                        rows="7"
+                                                        placeholder="Hello! I'm interested in collaborating with you on..."
+                                                        className="w-full bg-transparent border border-white py-2.5 px-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-600 transition-colors duration-300 ease-in-out"
+                                                        required
+                                                        value={data.message}
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "message",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                    />
+                                                    <InputError
+                                                        message={errors.message}
+                                                        className="mt-2"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <button
+                                                        type="submit"
+                                                        className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 px-5 py-2 rounded-full block font-semibold hover:font-bold transition-all hover:scale-101"
+                                                        disabled={processing}
+                                                    >
+                                                        {processing
+                                                            ? "Sending..."
+                                                            : "Submit Message"}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    )}
+                                    <div className="flex flex-col items-start md:items-end w-full md:ps-8">
                                         <div className="flex flex-col gap-4 justify-center w-full">
                                             {socials.map((s) => (
                                                 <div
                                                     key={s.name}
-                                                    className="flex items-center justify-between gap-4 bg-white/4 border border-white/10 rounded-xl p-3 hover:shadow-lg transition-transform transform hover:-translate-y-1"
+                                                    className="flex items-center justify-between gap-4 bg-white/4 border border-white/10 rounded-xl p-4 hover:shadow-lg transition-transform transform hover:-translate-y-1"
                                                 >
                                                     <div className="flex items-center gap-3">
                                                         <span
-                                                            className={`flex items-center justify-center w-12 h-12 rounded-full text-white shadow-md bg-${s.colorClass}`}
+                                                            className={`flex items-center justify-center w-12 h-12 rounded-full text-white shadow-md ${s.colorClass}`}
                                                         >
                                                             {s.icon}
                                                         </span>

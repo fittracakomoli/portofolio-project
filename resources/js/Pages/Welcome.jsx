@@ -288,7 +288,7 @@ export default function Welcome({ projects }) {
                             <div className="sm:w-2/5 my-8">
                                 <div className="border border-white p-8 rounded-full">
                                     <img
-                                        src="/img/Capture06391.jpg"
+                                        src="/img/main.jpg"
                                         className="rounded-full w-full object-cover"
                                         alt="Fittra Cakomoli"
                                     />

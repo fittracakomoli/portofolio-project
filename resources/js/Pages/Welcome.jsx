@@ -523,11 +523,10 @@ export default function Welcome({ projects }) {
                                 <p className="text-white text-center mb-8">
                                     Hands-On Experience Through Real Projects
                                 </p>
-
-                                {projects.length > 0 ? (
-                                    <>
-                                        {projects.map((project) => (
-                                            <div className="w-full grid md:grid-cols-3 gap-4">
+                                <div className="w-full grid md:grid-cols-3 gap-4">
+                                    {projects.length > 0 ? (
+                                        <>
+                                            {projects.map((project) => (
                                                 <SpotlightCard
                                                     key={project.id}
                                                     className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl custom-spotlight-card"
@@ -625,14 +624,14 @@ export default function Welcome({ projects }) {
                                                         </div>
                                                     </div>
                                                 </SpotlightCard>
-                                            </div>
-                                        ))}
-                                    </>
-                                ) : (
-                                    <p className="w-full bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl text-center text-white">
-                                        No projects available at the moment.
-                                    </p>
-                                )}
+                                            ))}
+                                        </>
+                                    ) : (
+                                        <p className="w-full bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl text-center text-white">
+                                            No projects available at the moment.
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </section>
